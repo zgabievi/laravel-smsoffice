@@ -40,12 +40,12 @@ class SMSOffice
         ];
 
         $params = array_merge($params, $base);
-        $url = $this->apiUrl . '?' . http_build_query($params);
+        $url = $this->apiUrl.'?'.http_build_query($params);
 
         $response = $this->httpClient->get($url);
-        $response = json_decode((string)$response->getBody(), true);
+        $response = json_decode((string) $response->getBody(), true);
 
-        if (isset($response['ErrorCode']) && (int)$response['ErrorCode'] !== 0) {
+        if (isset($response['ErrorCode']) && (int) $response['ErrorCode'] !== 0) {
             throw new DomainException($response['Message'], $response['ErrorCode']);
         }
     }
