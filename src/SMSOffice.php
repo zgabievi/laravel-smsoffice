@@ -19,7 +19,11 @@ class SMSOffice
     /** @var string */
     protected $sender;
 
-    //
+    /**
+     * SMSOffice constructor.
+     * @param $key
+     * @param $sender
+     */
     public function __construct($key, $sender)
     {
         $this->key = $key;
@@ -31,7 +35,10 @@ class SMSOffice
         ]);
     }
 
-    //
+    /**
+     * @param $params
+     * @throws DomainException
+     */
     public function send($params)
     {
         $base = [

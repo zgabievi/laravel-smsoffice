@@ -10,7 +10,10 @@ class SMSOfficeChannel
     /** @var \Gabievi\LaravelSMSOffice\SMSOffice */
     protected $smsoffice;
 
-    //
+    /**
+     * SMSOfficeChannel constructor.
+     * @param SMSOffice $smsoffice
+     */
     public function __construct(SMSOffice $smsoffice)
     {
         $this->smsoffice = $smsoffice;
@@ -21,6 +24,7 @@ class SMSOfficeChannel
      *
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
+     * @throws MissingRecipient
      */
     public function send($notifiable, Notification $notification)
     {
@@ -30,6 +34,7 @@ class SMSOfficeChannel
             throw new MissingRecipient;
         }
 
+        /** @scrutinizer ignore-call */
         $message = $notification->toSMSOffice($notifiable);
 
         if (is_string($message)) {
@@ -39,7 +44,10 @@ class SMSOfficeChannel
         $this->sendMessage($to, $message);
     }
 
-    //
+    /**
+     * @param $recipient
+     * @param SMSOfficeMessage $message
+     */
     protected function sendMessage($recipient, SMSOfficeMessage $message)
     {
         if (strpos($recipient, '+') === 0) {

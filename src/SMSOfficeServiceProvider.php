@@ -11,10 +11,12 @@ class SMSOfficeServiceProvider extends ServiceProvider
      * Perform post-registration booting of services.
      *
      * @return void
+     * @throws InvalidConfiguration
      */
     public function boot()
     {
-        $this->app->singleton(SMSOffice::class, function () {
+        $this->app->singleton(SMSOffice::class, function() {
+            /** @scrutinizer ignore-call */
             $config = config('services.smsoffice');
 
             if ($config === null) {
