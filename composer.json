@@ -35,7 +35,10 @@
     "autoload-dev": {
         "psr-4": {
             "Gabievi\\LaravelSMSOffice\\Tests\\": "tests"
-        }
+        },
+        "files": [
+            "tests/helpers.php"
+        ]
     },
     "scripts": {
         "test": "phpunit",
