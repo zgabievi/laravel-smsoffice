@@ -16,8 +16,7 @@ class SMSOfficeServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->singleton(SMSOffice::class, function() {
-            /** @scrutinizer ignore-call */
-            $config = config('services.smsoffice');
+            $config = /** @scrutinizer ignore-call */config('services.smsoffice');
 
             if ($config === null) {
                 throw new InvalidConfiguration;
