@@ -48,6 +48,21 @@ class SMSOfficeServiceProviderTest extends TestCase
 
         (new SMSOfficeServiceProvider($this->app))->boot();
     }
+
+    /** @test */
+    public function it_returns_gateway_from_closure()
+    {
+        $this->app['config']->set('services.smsoffice', [
+            'key'    => 'TEST_KEY',
+            'sender' => 'JOHN',
+        ]);
+
+        (new SMSOfficeServiceProvider($this->app))->boot();
+
+        $gateway = $this->app->getBindings()[SMSOffice::class]['concrete']();
+
+        $this->assertEquals($gateway, new SMSOffice('TEST_KEY', 'JOHN'));
+    }
 }
 
 class Config

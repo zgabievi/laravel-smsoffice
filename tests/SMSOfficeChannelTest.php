@@ -71,6 +71,25 @@ class SMSOfficeChannelTest extends TestCase
 
         $this->channel->send(new TestNotifiableWithoutRouteNotificationMethod, new TestNotification);
     }
+
+    /** @test */
+    public function it_sends_notification_with_inline_message()
+    {
+        $params = [
+            'destination' => '1234567890',
+            'content'     => 'hello',
+        ];
+
+        $this->smsoffice->shouldReceive('send')
+            ->once()
+            ->with(M::on(function ($base) use ($params) {
+                $this->assertEquals($base, $params);
+
+                return $base === $params;
+            }));
+
+        $this->channel->send(new TestNotifiable, new TestNotificationWithInlineMessage);
+    }
 }
 
 class TestNotifiable
@@ -94,5 +113,13 @@ class TestNotification extends Notification
     public function toSMSOffice()
     {
         return SMSOfficeMessage::create('hello');
+    }
+}
+
+class TestNotificationWithInlineMessage extends Notification
+{
+    public function toSMSOffice()
+    {
+        return 'hello';
     }
 }

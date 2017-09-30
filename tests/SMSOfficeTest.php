@@ -18,7 +18,7 @@ class SMSOfficeTest extends TestCase
     {
         parent::setUp();
 
-        $this->smsoffice = new SMSOffice('TEST_KEY', 'TEST_SENDER');
+        $this->smsoffice = new SMSOffice('TEST_KEY', 'JOHN');
     }
 
     /** @test */
