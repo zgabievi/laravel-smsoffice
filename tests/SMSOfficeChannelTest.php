@@ -77,7 +77,7 @@ class TestNotifiable
 {
     public function routeNotificationFor()
     {
-        return '+1234567890';
+        return '+001234567890';
     }
 }
 
