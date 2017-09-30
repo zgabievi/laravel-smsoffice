@@ -5,6 +5,7 @@
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
+[![StyleCI][ico-styleci]][link-styleci]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Custom driver, [SMSOffice](http://smsoffice.ge/), integration for [Laravel Notifications](https://laravel.com/docs/5.5/notifications)
@@ -126,12 +127,14 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-travis]: https://img.shields.io/travis/zgabievi/laravel-smsoffice/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/zgabievi/laravel-smsoffice.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/zgabievi/laravel-smsoffice.svg?style=flat-square
+[ico-styleci]: https://styleci.io/repos/105359139/shield
 [ico-downloads]: https://img.shields.io/packagist/dt/zgabievi/laravel-smsoffice.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/zgabievi/laravel-smsoffice
 [link-travis]: https://travis-ci.org/zgabievi/laravel-smsoffice
 [link-scrutinizer]: https://scrutinizer-ci.com/g/zgabievi/laravel-smsoffice/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/zgabievi/laravel-smsoffice
+[link-styleci]: https://styleci.io/repos/105359139
 [link-downloads]: https://packagist.org/packages/zgabievi/laravel-smsoffice
 [link-author]: https://github.com/zgabievi
 [link-contributors]: ../../contributors
