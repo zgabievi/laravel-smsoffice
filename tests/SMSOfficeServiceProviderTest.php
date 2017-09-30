@@ -3,33 +3,68 @@
 namespace Gabievi\LaravelSMSOffice\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Illuminate\Container\Container;
 use Gabievi\LaravelSMSOffice\SMSOffice;
 use Gabievi\LaravelSMSOffice\SMSOfficeServiceProvider;
+use Gabievi\LaravelSMSOffice\Exceptions\InvalidConfiguration;
 
-class SMSOfficeMessageTest extends TestCase
+class SMSOfficeServiceProviderTest extends TestCase
 {
-    /** @test */
-    public function it_can_accept_a_content_in_construct()
-    {
-        $message = new SMSOfficeMessage('hello');
+    /**
+     * @var \Illuminate\Contracts\Foundation\Application|Container
+     */
+    protected $app;
 
-        $this->assertEquals('hello', $message->content);
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     * This method is called before a test is executed.
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->app = Container::getInstance();
+
+        $this->app->singleton('config', Config::class);
     }
 
     /** @test */
-    public function it_can_accept_a_content_with_create_method()
+    public function it_binds_service_provider_to_container()
     {
-        $message = SMSOfficeMessage::create('hello');
+        $this->app['config']->set('services.smsoffice', [
+            'key'    => 'TEST_KEY',
+            'sender' => 'JOHN',
+        ]);
 
-        $this->assertEquals('hello', $message->content);
+        (new SMSOfficeServiceProvider($this->app))->boot();
+
+        $this->assertArrayHasKey(SMSOffice::class, $this->app->getBindings());
     }
 
     /** @test */
-    public function it_can_set_content_on_initialed_message()
+    public function it_throws_exception_if_config_was_not_found()
     {
-        $message = new SMSOfficeMessage;
-        $message->content('hello');
+        $this->expectException(InvalidConfiguration::class);
 
-        $this->assertEquals('hello', $message->content);
+        (new SMSOfficeServiceProvider($this->app))->boot();
+    }
+}
+
+class Config
+{
+    protected $storage = [];
+
+    public function get($key, $default = null)
+    {
+        if (array_key_exists($key, $this->storage)) {
+            return $this->storage[$key];
+        }
+
+        return $default;
+    }
+
+    public function set($key, $value)
+    {
+        $this->storage[$key] = $value;
     }
 }
