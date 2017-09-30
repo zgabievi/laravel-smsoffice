@@ -14,7 +14,7 @@ class SMSOfficeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(SMSOffice::class, function () {
+        $this->app->singleton(SMSOffice::class, function() {
             $config = config('services.smsoffice');
 
             if ($config === null) {
