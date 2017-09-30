@@ -34,7 +34,7 @@ class SMSOfficeChannel
             throw new MissingRecipient;
         }
 
-        $message = $notification->/* @scrutinizer ignore-call */toSMSOffice($notifiable);
+        $message = $notification->toSMSOffice($notifiable);
 
         if (is_string($message)) {
             $message = new SMSOfficeMessage($message);
