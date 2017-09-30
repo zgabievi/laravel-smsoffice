@@ -13,7 +13,7 @@ if (! function_exists('app')) {
     }
 }
 
-if (!function_exists('config')) {
+if (! function_exists('config')) {
     function config($key = null, $default = null)
     {
         if (is_null($key)) {
