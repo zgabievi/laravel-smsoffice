@@ -1,0 +1,55 @@
+{
+    "name": "zgabievi/laravel-smsoffice",
+    "type": "library",
+    "description": "SMSOffice Channel for Laravel Notifications",
+    "keywords": [
+        "Gabievi",
+        "laravel-smsoffice"
+    ],
+    "homepage": "https://github.com/zgabievi/laravel-smsoffice",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zura Gabievi",
+            "email": "zura.gabievi@gmail.com",
+            "homepage": "https://zgabievi.github.io/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/notifications": "^5.5",
+        "illuminate/support": "^5.5"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.9",
+        "phpunit/phpunit": "^6.3",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gabievi\\LaravelSMSOffice\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gabievi\\LaravelSMSOffice\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gabievi\\LaravelSMSOffice\\SMSOfficeServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
